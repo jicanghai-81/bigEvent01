@@ -24,7 +24,7 @@ $(function () {
 function getUserInfo() {
     $.ajax({
         url: '/my/userinfo',
-        method: 'GET',
+        method: 'get',
         // headers 就是请求头配置对象
         // headers: {
         //     Authorization: localStorage.getItem('token') || ''
@@ -33,7 +33,6 @@ function getUserInfo() {
             if (res.status !== 0) {
                 return layui.layer.msg('获取用户信息失败')
             }
-            console.log(res);
             renderAvatar(res.data)
         }
     })
@@ -43,7 +42,7 @@ function renderAvatar(user) {
     // 1. 获取用户的名称
     var name = user.nickname || user.username
     // 2.设置欢迎的文本
-    $('#welcome').html(`欢迎  name`)
+    $('#welcome').html(`欢迎  ${name}`)
     // 3.按需渲染用户的头像
     if (user.user_pic !== null) {
         // 3.1 渲染图片头像
